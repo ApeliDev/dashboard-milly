@@ -106,7 +106,7 @@ const Dashboard = () => {
                     <text x="30" y="200" textAnchor="middle" className="text-sm fill-gray-600">2500</text>
                     <text x="30" y="250" textAnchor="middle" className="text-sm fill-gray-600">0</text>
 
-                    {/* Production line (yellow-green) */}
+                    {/* Production line  */}
                     <polyline
                       fill="none"
                       stroke="#84cc16"
@@ -114,7 +114,7 @@ const Dashboard = () => {
                       points="71,200 185,230 299,50 413,150 527,130 641,140 755,150"
                     />
                     
-                    {/* Consumption line (dark green) */}
+                    {/* Consumption line */}
                     <polyline
                       fill="none"
                       stroke="#166534"
@@ -168,44 +168,34 @@ const Dashboard = () => {
             {/* Right Column */}
             <div className="space-y-6">
               {/* Activity Feed */}
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">Activity Feed</h3>
-                <p className="text-sm text-gray-500 mb-6">Recent system events and alerts.</p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <Thermometer className="w-4 h-4" />
-                          <span className="text-sm font-medium">Temp Warning</span>
-                        </div>
-                        <span className="text-xs text-gray-500">less than a minute ago</span>
-                      </div>
-                      <p className="text-sm text-gray-600 mt-1">
-                        Low Temperature Warning: Digester temperature at 34.6C.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <AlertTriangle className="w-4 h-4" />
-                          <span className="text-sm font-medium">Leak Warning</span>
-                        </div>
-                        <span className="text-xs text-gray-500">less than a minute ago</span>
-                      </div>
-                      <p className="text-sm text-gray-600 mt-1">
-                        Leak Warning: Pressure at 1.02 bar (15.0% drop).
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ActivityFeed
+                activities={[
+                  {
+                    id: '1',
+                    type: 'system',
+                    title: 'System Update',
+                    time: '2 minutes ago',
+                    description: 'System maintenance completed successfully.',
+                    icon: <div className="w-2 h-2 bg-green-500 rounded-full mt-2" />
+                  },
+                  {
+                    id: '2',
+                    type: 'temperature',
+                    title: 'Temperature Alert',
+                    time: '5 minutes ago',
+                    description: 'Temperature fluctuation detected in digester #2.',
+                    icon: <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2" />
+                  },
+                  {
+                    id: '3',
+                    type: 'leak',
+                    title: 'Leak Detected',
+                    time: 'less than a minute ago',
+                    description: 'Leak Warning: Pressure at 1.02 bar (15.0% drop).',
+                    icon: <div className="w-2 h-2 bg-red-500 rounded-full mt-2" />
+                  }
+                ]}
+              />
 
               {/* Temperature Alert */}
               <div className="bg-red-500 text-white rounded-xl p-6">

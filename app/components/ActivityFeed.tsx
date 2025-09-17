@@ -11,6 +11,19 @@ interface ActivityFeedProps {
   activities: ActivityItemProps[];
 }
 
+export const ActivityFeed = ({ activities }: ActivityFeedProps) => (
+  <div className="bg-white rounded-xl p-6 shadow-sm">
+    <h3 className="text-lg font-semibold text-gray-800 mb-2">Activity Feed</h3>
+    <p className="text-sm text-gray-500 mb-6">Recent system events and alerts.</p>
+    
+    <div className="space-y-4">
+      {activities.map((activity) => (
+        <ActivityItem key={activity.id} {...activity} />
+      ))}
+    </div>
+  </div>
+);
+
 const ActivityItem = ({ type, title, time, description, icon }: ActivityItemProps) => {
   const getStatusColor = () => {
     switch (type) {
@@ -37,16 +50,6 @@ const ActivityItem = ({ type, title, time, description, icon }: ActivityItemProp
         </div>
         <p className="text-sm text-gray-600 mt-1">{description}</p>
       </div>
-    </div>
-  );
-};
-
-const ActivityFeed = ({ activities }: ActivityFeedProps) => {
-  return (
-    <div className="space-y-4">
-      {activities.map((activity) => (
-        <ActivityItem key={activity.id} {...activity} />
-      ))}
     </div>
   );
 };
